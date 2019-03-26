@@ -1,0 +1,30 @@
+.header-img {
+    margin: 0px;
+    padding: 0px;
+    background-image: url("https://downloads-pearljam-com.s3.amazonaws.com/img/news-hero/15298735768902b97a0cdd7e565971288bd812b3aa.JPG");
+    background-repeat: no-repeat;
+    height: 90vh;
+    background-size: cover;
+    /* filter: blur(2px); */
+}
+
+.none-margins {
+    margin: 0px;
+}
+
+.bw-blur {
+    filter: blur(20px) grayscale(20%);
+}
+
+.opacity100 {
+    opacity: 1;
+}
+
+.white50 {
+    background-color: white;
+    opacity: 0.5;
+}
+
+.padding-top {
+    padding: 10px;
+}

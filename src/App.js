@@ -1,28 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
+import EventUpload from './components/eventUpload';
+import Landing from './components/Landing';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+function Index() {
+  return <Landing />
 }
 
-export default App;
+function Carga() {
+  return <EventUpload />
+}
+function Gestion() {
+  return <h1>Gestion</h1>
+}
+
+function AppRouter() {
+  return (
+    <Router>
+      <div>
+        <nav className="light-blue accent-1">
+          <div className="nav-wrapper">
+            <a href="#" className="brand-logo">bq Eventos</a>
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+              <li><Link to="/">Inicio</Link></li>
+              <li><Link to="/carga/">Carga</Link></li>
+              <li><Link to="/gestion/">Gestion</Link></li>
+            </ul>
+          </div>
+        </nav>
+
+        <Route path="/" exact component={Index} />
+        <Route path="/carga/" component={Carga} />
+        <Route path="/gestion/" component={Gestion} />
+      </div>
+    </Router>
+  )
+}
+export default AppRouter;
