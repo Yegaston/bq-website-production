@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 import EventUpload from './components/eventUpload';
 import Landing from './components/Landing';
+import Gestion from './components/Gestion';
 
 import firebase from './providers/firebase-config';
 import M from 'materialize-css';
@@ -18,8 +19,8 @@ function Index() {
 function Carga() {
   return UserEmail ?  <EventUpload />: <Login />
 }
-function Gestion() {
-  return <h1>Gestion</h1>
+function Eventlist() {
+  return <Gestion />
 }
 
 function AppRouter() {
@@ -32,14 +33,14 @@ function AppRouter() {
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li><Link to="/">Inicio</Link></li>
               <li><Link to="/carga/">Carga</Link></li>
-              <li><Link to="/gestion/">Gestion</Link></li>
+              <li><Link to="/gestion/">Eventos</Link></li>
             </ul>
           </div>
         </nav>
 
         <Route path="/" exact component={Index} />
         <Route path="/carga/" component={Carga} />
-        <Route path="/gestion/" component={Gestion} />
+        <Route path="/gestion/" component={Eventlist} />
       </div>
     </Router>
   )

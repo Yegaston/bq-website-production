@@ -1,3 +1,13 @@
 .none-margins {
     margin: 0px;
 }
+
+.padding-vertical {
+    padding-right: 5em;
+    padding-left: 5em;
+}
+
+.margin-vertical {
+    margin-left: 5em;
+    margin-right: 5em;
+}
