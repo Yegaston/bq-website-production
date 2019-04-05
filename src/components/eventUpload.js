@@ -16,8 +16,8 @@ export default class eventUpload extends Component {
       dia: '',
       hora: '',
       asistentes: 0,
-      tipoDeEntradas: '',
-      boleterias: '',
+      tipoDeEntradas: [],
+      boleterias: [],
     }
 
     this.inputHandler = this.inputHandler.bind(this);
@@ -46,8 +46,8 @@ export default class eventUpload extends Component {
         Dia: this.state.dia,
         hora: this.state.hora,
         asistentes: this.state.asistentes,
-        tipoDeEntrada: this.state.tipoDeEntradas,
-        boleterias: this.state.boleterias
+        tipoDeEntrada: [this.state.tipoDeEntradas],
+        boleterias: [this.state.boleterias]
       })
 
       M.toast({ html: 'Evento agregado' });

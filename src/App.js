@@ -17,7 +17,8 @@ function Index() {
 }
 
 function Carga() {
-  return UserEmail ?  <EventUpload />: <Login />
+  // return UserEmail ?  <EventUpload />: <Login />
+  return <EventUpload />
 }
 function Eventlist() {
   return <Gestion />
