@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import EditEvent from './EditEvent';
 
+import M from 'materialize-css'
+
 import db from '../providers/firestore-provider'
 
 
@@ -26,6 +28,32 @@ export default class Gestion extends Component {
     this.updateEvent = this.updateEvent.bind(this)
 
     this.getEventId = this.getEventId.bind(this);
+  }
+
+  fetchEvents() {
+    db.collection("eventos").get()
+      .then((querySnapshot) => {
+        this.setState({
+          events: querySnapshot.docs.map(doc => {
+            return {
+              id: doc.id,
+              Dia: doc.data().Dia,
+              asistentes: doc.data().asistentes,
+              boleterias: doc.data().boleterias,
+              descrip: doc.data().descrip,
+              foto: doc.data().foto,
+              hora: doc.data().hora,
+              lugar: doc.data().lugar,
+              organizador: doc.data().organizador,
+              tags: doc.data().tags,
+              tipoDeEntradas: doc.data().tipoDeEntradas,
+              title: doc.data().title,
+            }
+          })
+        })
+        console.log(this.state.events)
+      })
+      .catch(err => console.log(err));
   }
 
   inputHandler(e) {
@@ -56,33 +84,30 @@ export default class Gestion extends Component {
     e.preventDefault();
     console.log(this.state.title, this.state.descripcion, this.state.dia, this.state.hora, this.state.lugar)
 
+    var eventosRef = db.collection("eventos").doc(this.state.id);
+
+    return eventosRef.update({
+      title: this.state.title,
+      descrip: this.state.descripcion,
+      Dia: this.state.dia,
+      hora: this.state.hora,
+      lugar: this.state.lugar,
+    })
+      .then(function () {
+        console.log("Document successfully updated!");
+        M.toast({html: 'La tarea ha sido actualizada correctamente.', classes: 'rounded green darken-1'});
+      })
+      .catch(function (error) {
+        // The document probably doesn't exist.
+        console.error("Error updating document: ", error);
+        M.toast({html: `ERROR: ¿El documento existe?. - ${error} -`, classes: 'rounded deep-orange accent-3'});
+      });
+
+      this.fetchEvents();
+
   }
 
-  fetchEvents() {
-    db.collection("eventos").get()
-      .then((querySnapshot) => {
-        this.setState({
-          events: querySnapshot.docs.map(doc => {
-            return {
-              id: doc.id,
-              Dia: doc.data().Dia,
-              asistentes: doc.data().asistentes,
-              boleterias: doc.data().boleterias,
-              descrip: doc.data().descrip,
-              foto: doc.data().foto,
-              hora: doc.data().hora,
-              lugar: doc.data().lugar,
-              organizador: doc.data().organizador,
-              tags: doc.data().tags,
-              tipoDeEntradas: doc.data().tipoDeEntradas,
-              title: doc.data().title,
-            }
-          })
-        })
-        console.log(this.state.events)
-      })
-      .catch(err => console.log(err));
-  }
+  
 
   deleteEvents(id) {
     // e.preventDefault
