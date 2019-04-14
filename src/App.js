@@ -17,11 +17,10 @@ function Index() {
 }
 
 function Carga() {
-  // return UserEmail ?  <EventUpload />: <Login />
-  return <EventUpload />
+  return UserEmail ?  <EventUpload />: <Login />
 }
 function Eventlist() {
-  return <Gestion />
+  return UserEmail ?  <Gestion />: <Login />
 }
 
 function AppRouter() {
